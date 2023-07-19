@@ -1,4 +1,4 @@
-export type PitchPlayerData = {
+type PitchPlayerData = {
   id: number;
   role: string;
   position: [number, number];
@@ -30,4 +30,9 @@ export type Goal = {
   goalPercentage: number;
   random: number;
   isGoal: boolean;
+};
+
+export type Stats = {
+  atk: number;
+  def: number;
 };

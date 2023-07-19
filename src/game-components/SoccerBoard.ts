@@ -1,5 +1,5 @@
 import { Container, Sprite, Texture } from "pixi.js";
-import { PitchPlayerData } from "@/types";
+import { FilledPitchPlayerData } from "@/types";
 import { PitchPlayer } from "./PitchPlayer";
 import { logicalHeight, logicalWidth } from "@/scenes/Scene";
 
@@ -29,7 +29,7 @@ export class SoccerBoard extends Container {
     this.addChild(sprite, this.myFormation, this.opponentFormation);
   }
 
-  public drawMyFormation(formation: PitchPlayerData[]) {
+  public drawMyFormation(formation: FilledPitchPlayerData[]) {
     this.myFormation.removeChildren();
     this.myFormation.removeAllListeners();
     this.myFormationMap.clear();
@@ -46,7 +46,7 @@ export class SoccerBoard extends Container {
     });
   }
 
-  public drawOpponentFormation(formation: PitchPlayerData[]) {
+  public drawOpponentFormation(formation: FilledPitchPlayerData[]) {
     this.opponentFormation.removeChildren();
     this.opponeFormationMap.clear();
 

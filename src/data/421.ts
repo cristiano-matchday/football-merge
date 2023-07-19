@@ -1,103 +1,132 @@
-import { PitchPlayerData } from "@/types";
+import { FilledPitchPlayerData } from "@/types";
+import {
+  defense1,
+  defense2,
+  defense3,
+  defense4,
+  defense5,
+  forward4,
+  goalKeeper1,
+  goalkeeper2,
+  midfield1,
+  midfield2,
+  midfield3,
+} from "./cards";
 
-export const myFormation421: PitchPlayerData[] = [
+export const myFormation421: FilledPitchPlayerData[] = [
   {
     id: 0,
     role: "GKP",
     position: [215, 900],
     color: 0xffffff,
+    player: goalKeeper1,
   },
   {
     id: 1,
     role: "D",
     position: [80, 740],
     color: 0xffffff,
+    player: defense1,
   },
   {
     id: 2,
     role: "D",
     position: [160, 740],
     color: 0xffffff,
+    player: defense2,
   },
   {
     id: 3,
     role: "D",
     position: [270, 740],
     color: 0xffffff,
+    player: defense3,
   },
   {
     id: 4,
     role: "D",
     position: [350, 740],
     color: 0xffffff,
+    player: defense4,
   },
   {
     id: 5,
     role: "M",
     position: [170, 495],
     color: 0xffffff,
+    player: midfield1,
   },
   {
     id: 6,
     role: "M",
     position: [260, 495],
     color: 0xffffff,
+    player: midfield2,
   },
   {
     id: 7,
     role: "F",
     position: [215, 225],
     color: 0xffffff,
+    player: midfield3,
   },
 ];
 
-export const opponendFormation421: PitchPlayerData[] = [
+export const opponendFormation421: FilledPitchPlayerData[] = [
   {
     id: 0,
     role: "GKP",
     position: [215, 30],
     color: 0x98fb98,
+    player: goalkeeper2,
   },
   {
     id: 1,
     role: "D",
     position: [80, 195],
     color: 0xffffff,
+    player: defense1,
   },
   {
     id: 2,
     role: "D",
     position: [160, 195],
     color: 0xffffff,
+    player: defense2,
   },
   {
     id: 3,
     role: "D",
     position: [270, 195],
     color: 0xffffff,
+    player: defense3,
   },
   {
     id: 4,
     role: "D",
     position: [350, 195],
     color: 0xffffff,
+    player: defense5,
   },
   {
     id: 5,
     role: "M",
     position: [170, 435],
     color: 0xffffff,
+    player: midfield2,
   },
   {
     id: 6,
     role: "M",
     position: [260, 435],
     color: 0xffffff,
+    player: midfield3,
   },
   {
     id: 7,
     role: "F",
     position: [215, 710],
     color: 0xffffff,
+    player: forward4,
   },
 ];

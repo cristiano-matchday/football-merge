@@ -1,13 +1,13 @@
 import { Container, Graphics, Sprite, Text, Texture } from "pixi.js";
 import { GlowFilter, OutlineFilter } from "pixi-filters";
-import { PitchPlayerData, PlayerData } from "@/types";
+import { FilledPitchPlayerData, PlayerData } from "@/types";
 import { getTeamColor } from "@/utils";
 import { gsap } from "gsap";
 
 const myGlowFilter = new GlowFilter({ color: 0xffffff, alpha: 1 });
 
 export class PitchPlayer extends Container {
-  #pitchPlayerData: PitchPlayerData;
+  #pitchPlayerData: FilledPitchPlayerData;
   #playerData: PlayerData | null = null;
 
   public get pitchPlayerData() {
@@ -28,7 +28,7 @@ export class PitchPlayer extends Container {
     return this.#playerData;
   }
 
-  constructor(pitchPlayerData: PitchPlayerData, isMe: boolean) {
+  constructor(pitchPlayerData: FilledPitchPlayerData, isMe: boolean) {
     super();
 
     this.#pitchPlayerData = pitchPlayerData;
@@ -51,6 +51,7 @@ export class PitchPlayer extends Container {
     this.createDefGrade();
 
     this.addChild(this.bodyGraphics, this.atkContainer, this.defContainer);
+    this.fillPlayerData(pitchPlayerData.player);
   }
 
   private createAtkGrade() {

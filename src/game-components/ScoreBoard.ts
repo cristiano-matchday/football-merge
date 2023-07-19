@@ -1,3 +1,4 @@
+import { Stats } from "@/types";
 import { getTeamColor } from "@/utils";
 import { Container, Text } from "pixi.js";
 
@@ -35,11 +36,11 @@ export class ScoreBoard extends Container {
     this.opponentDefLabel.x = this.opponentAtkLabel.x;
     this.opponentDefLabel.y = this.myAtkLabel.height;
 
-    this.updateMyScore(0, 0);
-    this.updateOpponentScore(0, 0);
+    this.updateMyScore({ atk: 0, def: 0 });
+    this.updateOpponentScore({ atk: 0, def: 0 });
   }
 
-  public updateMyScore(atk: number, def: number) {
+  public updateMyScore({ atk, def }: Stats) {
     this.myScore.atk = atk;
     this.myScore.def = def;
 
@@ -47,7 +48,7 @@ export class ScoreBoard extends Container {
     this.myDefLabel.text = `Def: ${this.myScore.def}`;
   }
 
-  public updateOpponentScore(atk: number, def: number) {
+  public updateOpponentScore({ atk, def }: Stats) {
     this.opponendScore.atk = atk;
     this.opponendScore.def = def;
 

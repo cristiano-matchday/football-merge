@@ -1,31 +1,16 @@
-import {
-  PlayerData,
-  PitchPlayerData,
-  FilledPitchPlayerData,
-  Goal,
-} from "@/types";
+import { FilledPitchPlayerData, Goal, Stats } from "@/types";
 import mitt from "mitt";
 
 type Events = {
   init: void;
   start_match: {
-    myDeck: PlayerData[];
-    myFormationTemplate: PitchPlayerData[];
-    opponentFormationTemplate: PitchPlayerData[];
+    myFormationTemplate: FilledPitchPlayerData[];
+    opponentFormationTemplate: FilledPitchPlayerData[];
+    myStats: Stats;
+    opponentStats: Stats;
   };
   my_turn: void;
-  my_turn_end: FilledPitchPlayerData;
-  opponent_turn: {
-    card: PlayerData;
-    pitchPlayerId: number;
-    opponentAtk: number;
-    opponentDef: number;
-  };
-  opponent_turn_end: {
-    card: PlayerData;
-    pitchPlayerId: number;
-  };
-  update_my_score: { myAtk: number; myDef: number };
+  my_turn_end: void;
   compute_my_atk_phase: {
     myAtk: number;
     opponentDef: number;
