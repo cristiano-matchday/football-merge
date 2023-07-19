@@ -16,24 +16,3 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
----
-
-Utilities - boosts/recovery/stamina/coach
-
-Reveal event card - weather card / fans / anything
-
-Abilities - Cards can power up or add effects.
-One of the abilities can depend on the position on the field (+1 on the player on your right)
-
-Stamina to avoid people re-using the same card over turns
-
-1. Choose a coach/formation
-2. Utility cards ? TBD
-3. 8 Players (8v8)
-4. 1st time - Each player has an atk phase and a def phase
-   4.1) At the end of each phase, depending on those params, there are goal chances
-   4.2) Goal chances will determine the goals scored and the animations to play
-5. 2nd time - Each player has an atk phase and a def phase
-   5.1) See 4.1
-   5.2) See 4.2

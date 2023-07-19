@@ -40,8 +40,6 @@ type Events = {
     myScore: number;
     opponentScore: number;
   };
-  show_my_hand: void;
-  hide_my_hand: void;
 };
 
 export const emitter = mitt<Events>();

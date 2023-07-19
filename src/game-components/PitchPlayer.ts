@@ -93,21 +93,11 @@ export class PitchPlayer extends Container {
     sprite.height = this.bodyGraphics.height;
     sprite.anchor.set(0.5);
     this.bodyGraphics.addChild(sprite);
-    this.disableClick();
     this.filters = [];
   }
 
   public removePlayerData() {
     this.#playerData = null;
-  }
-
-  public enableClick() {
-    this.eventMode = "dynamic";
-    this.cursor = "pointer";
-  }
-
-  public disableClick() {
-    this.eventMode = "none";
   }
 
   private animateGlow() {

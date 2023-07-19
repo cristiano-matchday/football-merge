@@ -1,6 +1,4 @@
-import { Hand } from "../game-components/Hand";
 import { WatchContainer } from "../core/WatchContainer";
-import { Card } from "../game-components/Card";
 import { SoccerBoard } from "../game-components/SoccerBoard";
 import { ScoreBoard } from "../game-components/ScoreBoard";
 import { emitter } from "../emitter";
@@ -9,7 +7,6 @@ import { ActionPanel } from "@/game-components/ActionPanel";
 
 export class GameScene extends WatchContainer {
   private soccerBoard = new SoccerBoard();
-  private hand = new Hand();
   private scoreBoard = new ScoreBoard();
   private actionPanel = new ActionPanel();
 
@@ -18,17 +15,10 @@ export class GameScene extends WatchContainer {
 
     this.addPlayerBoard();
     this.addScoreBoard();
-    this.addHand();
     this.addActionPanel();
-    this.initOnboarding();
-
     this.setupListeners();
-  }
 
-  private initOnboarding() {
-    this.actionPanel.updateLabel(
-      `Yellow! Welcome to this prototype\n\nWhen ready press play.`
-    );
+    emitter.emit("init");
   }
 
   private addActionPanel() {
@@ -39,37 +29,11 @@ export class GameScene extends WatchContainer {
     this.addChild(this.soccerBoard);
   }
 
-  private addHand() {
-    this.addChild(this.hand);
-
-    this.hand.addEventListener("pointerdown", async (e) => {
-      const card = e.target as Card;
-      if (!(card instanceof Card)) return;
-      this.soccerBoard.lastClickedPitchPlayer?.fillPlayerData(card.playerData);
-
-      const newPlayerEntry = {
-        ...this.soccerBoard.lastClickedPitchPlayer!.pitchPlayerData,
-        player: card.playerData,
-      };
-
-      this.soccerBoard.lastClickedPitchPlayer = null;
-
-      emitter.emit("hide_my_hand");
-      this.hand.removeCard(card.playerData);
-
-      await delay(300);
-      emitter.emit("my_turn_end", newPlayerEntry);
-
-      console.log("[Picked Card]: ", card.playerData);
-    });
-  }
-
   private addScoreBoard() {
     this.addChild(this.scoreBoard);
   }
 
   private setupListeners() {
-    this.handleHandListeners();
     this.handleStartMatchListener();
     this.handleMyTurnListener();
     this.handleUpdateMyScoreListener();
@@ -154,7 +118,7 @@ export class GameScene extends WatchContainer {
     emitter.on(
       "opponent_turn",
       ({ card, pitchPlayerId, opponentAtk, opponentDef }) => {
-        this.soccerBoard.disableMyBoard();
+        // this.soccerBoard.disableMyBoard();
         const opponentPitchPlayer =
           this.soccerBoard.getOpponentPitchPlayer(pitchPlayerId);
 
@@ -173,16 +137,15 @@ export class GameScene extends WatchContainer {
 
   private handleMyTurnListener() {
     emitter.on("my_turn", () => {
-      this.soccerBoard.enableMyBoard();
+      // this.soccerBoard.enableMyBoard();
     });
   }
 
   private handleStartMatchListener() {
     emitter.on(
       "start_match",
-      async ({ myDeck, myFormationTemplate, opponentFormationTemplate }) => {
+      async ({ myFormationTemplate, opponentFormationTemplate }) => {
         this.soccerBoard.drawMyFormation(myFormationTemplate);
-        this.hand.initHand(myDeck);
         this.soccerBoard.drawOpponentFormation(opponentFormationTemplate);
 
         this.actionPanel.updateLabel(
@@ -210,15 +173,5 @@ export class GameScene extends WatchContainer {
         this.actionPanel.hide();
       }
     );
-  }
-
-  private handleHandListeners() {
-    emitter.on("show_my_hand", () => {
-      this.hand.show();
-    });
-
-    emitter.on("hide_my_hand", () => {
-      this.hand.hide();
-    });
   }
 }

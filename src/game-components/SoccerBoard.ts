@@ -1,5 +1,4 @@
 import { Container, Sprite, Texture } from "pixi.js";
-import { emitter } from "@/emitter";
 import { PitchPlayerData } from "@/types";
 import { PitchPlayer } from "./PitchPlayer";
 import { logicalHeight, logicalWidth } from "@/scenes/Scene";
@@ -7,6 +6,8 @@ import { logicalHeight, logicalWidth } from "@/scenes/Scene";
 export class SoccerBoard extends Container {
   private myFormation = new Container();
   private opponentFormation = new Container();
+
+  private myFormationMap = new Map<number, PitchPlayer>();
   private opponeFormationMap = new Map<number, PitchPlayer>();
 
   public lastClickedPitchPlayer: PitchPlayer | null = null;
@@ -31,20 +32,18 @@ export class SoccerBoard extends Container {
   public drawMyFormation(formation: PitchPlayerData[]) {
     this.myFormation.removeChildren();
     this.myFormation.removeAllListeners();
+    this.myFormationMap.clear();
 
     formation.forEach((pitchPlayerData) => {
       const pitchPlayer = new PitchPlayer(pitchPlayerData, true);
-      pitchPlayer.enableClick();
       this.myFormation.addChild(pitchPlayer);
+      this.myFormationMap.set(pitchPlayerData.id, pitchPlayer);
     });
 
     this.myFormation.addEventListener("pointerdown", (e) => {
       const pitchPlayer = e.target as PitchPlayer;
       this.lastClickedPitchPlayer = pitchPlayer;
-      emitter.emit("show_my_hand");
     });
-
-    this.disableMyBoard();
   }
 
   public drawOpponentFormation(formation: PitchPlayerData[]) {
@@ -59,13 +58,8 @@ export class SoccerBoard extends Container {
     });
   }
 
-  public enableMyBoard() {
-    this.myFormation.eventMode = "dynamic";
-  }
-
-  public disableMyBoard() {
-    this.myFormation.eventMode = "none";
-    this.myFormation.cursor = "not-allowed";
+  public getMyPitchPlayer(id: number) {
+    return this.myFormationMap.get(id);
   }
 
   public getOpponentPitchPlayer(id: number) {
