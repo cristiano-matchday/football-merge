@@ -1,0 +1,6 @@
+{
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "typescript.preferences.importModuleSpecifierEnding": "auto"
+}

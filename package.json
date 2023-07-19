@@ -1,0 +1,26 @@
+{
+  "name": "engine",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@pixi/layout": "^0.1.8",
+    "@pixi/sound": "^5.2.0",
+    "@types/node": "^20.4.2",
+    "gsap": "^3.12.2",
+    "mitt": "^3.0.1",
+    "normalize.css": "^8.0.1",
+    "pixi-filters": "^5.2.1",
+    "pixi.js": "^7.2.4",
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0",
+    "vue-tsc": "^1.8.3"
+  }
+}
