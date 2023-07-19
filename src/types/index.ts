@@ -1,13 +1,10 @@
-type PitchPlayerData = {
+export type FilledPitchPlayerData = {
   id: number;
   role: string;
   position: [number, number];
   color: number;
-};
-
-export interface FilledPitchPlayerData extends PitchPlayerData {
   player: PlayerData;
-}
+};
 
 export type FormationName = "4-2-1";
 
@@ -26,13 +23,21 @@ export type PlayerData = {
   club: string;
 };
 
-export type Goal = {
-  goalPercentage: number;
-  random: number;
-  isGoal: boolean;
-};
-
 export type Stats = {
   atk: number;
   def: number;
+};
+
+export type MergeAction = "Dribble" | "Tackle" | "Shoot";
+
+export type MergeItem = "Ball" | "Shoes" | "Gloves";
+
+export type MergeEntity<T extends MergeAction | MergeItem> = {
+  name: T;
+  maxLevel: number;
+};
+
+export type OnSetMergeEntity<T extends MergeAction | MergeItem> = {
+  name: T;
+  currentLevel: number;
 };
