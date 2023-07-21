@@ -40,4 +40,5 @@ export type MergeEntity<T extends MergeAction | MergeItem> = {
 export type OnSetMergeEntity<T extends MergeAction | MergeItem> = {
   name: T;
   currentLevel: number;
+  position?: { x: number; y: number };
 };

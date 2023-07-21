@@ -2,6 +2,8 @@ import { MergeAction, MergeItem } from "@/types";
 import { Container, Graphics, Text } from "pixi.js";
 
 export class BoardCell extends Container {
+  private isDragging = false;
+
   constructor(cellSize = 80, itemName: MergeAction | MergeItem, level: number) {
     super();
 
@@ -11,14 +13,6 @@ export class BoardCell extends Container {
       .drawRect(0, 0, cellSize, cellSize)
       .endFill();
 
-    const text = new Text(`${itemName}\nLvl:${level}`, {
-      fill: 0x000000,
-      fontSize: 14,
-    });
-
-    text.anchor.set(0.5);
-    text.position.set(cellSize / 2);
-
-    this.addChild(singleCell, text);
+    this.addChild(singleCell);
   }
 }
